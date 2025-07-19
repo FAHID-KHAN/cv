@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Fahid A. Khan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --terminal-bg: #181a1b;
+            --terminal-panel: #23272e;
+            --terminal-green: #39ff14;
+            --terminal-green-dark: #00ff00;
+            --terminal-gray: #b5e853;
+            --terminal-border: #00ff00;
+            --terminal-shadow: 0 0 16px #00ff0033;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Fira Mono', 'Consolas', 'Menlo', 'Monaco', 'Courier New', monospace;
+            background: var(--terminal-bg);
+            color: var(--terminal-gray);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        main {
+            max-width: 500px;
+            margin: 48px auto;
+            background: var(--terminal-panel);
+            padding: 32px 24px 24px 24px;
+            border-radius: 14px;
+            border: 2px solid var(--terminal-border);
+            box-shadow: var(--terminal-shadow);
+            position: relative;
+        }
+        h5 {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--terminal-green);
+            margin-bottom: 18px;
+            letter-spacing: 1px;
+            text-shadow: 0 0 8px var(--terminal-green-dark);
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        legend {
+            background: var(--terminal-green);
+            color: #181a1b;
+            font-size: 1.2rem;
+            border-radius: 8px;
+            padding: 8px 0;
+            margin-bottom: 18px;
+            text-align: center;
+            letter-spacing: 1px;
+            box-shadow: 0 0 8px var(--terminal-green-dark);
+            border: 1.5px solid var(--terminal-border);
+        }
+        label {
+            margin-bottom: 3px;
+            font-weight: 700;
+            color: var(--terminal-green);
+            letter-spacing: 0.5px;
+        }
+        input, textarea {
+            margin-bottom: 0;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1.5px solid #222;
+            font-size: 1rem;
+            background: #111;
+            color: var(--terminal-green);
+            font-family: inherit;
+            transition: border 0.2s, box-shadow 0.2s;
+            box-shadow: 0 0 0 1.5px #222;
+        }
+        input:focus, textarea:focus {
+            border: 1.5px solid var(--terminal-green);
+            outline: none;
+            background: #181a1b;
+            color: var(--terminal-green);
+            box-shadow: 0 0 8px var(--terminal-green-dark);
+        }
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        .btn-row {
+            display: flex;
+            gap: 10px;
+            margin-top: 8px;
+        }
+        button {
+            flex: 1;
+            padding: 12px 0;
+            border-radius: 6px;
+            border: 1.5px solid var(--terminal-green);
+            font-size: 1rem;
+            font-weight: 700;
+            background-color: #111;
+            color: var(--terminal-green);
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+            box-shadow: 0 0 8px #00ff0033;
+            text-shadow: 0 0 4px var(--terminal-green-dark);
+        }
+        button[type="reset"] {
+            border-color: #ff0055;
+            color: #ff0055;
+            background: #181a1b;
+            text-shadow: 0 0 4px #ff0055;
+        }
+        button:hover, button:focus {
+            background: var(--terminal-green);
+            color: #181a1b;
+            box-shadow: 0 0 16px var(--terminal-green-dark);
+        }
+        button[type="reset"]:hover, button[type="reset"]:focus {
+            background: #ff0055;
+            color: #fff;
+            box-shadow: 0 0 16px #ff0055;
+        }
+        .success, .error {
+            text-align: center;
+            margin-top: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 8px 0;
+            border-radius: 6px;
+            border: 1.5px solid;
+            background: #111;
+        }
+        .success {
+            color: var(--terminal-green);
+            border-color: var(--terminal-green);
+            box-shadow: 0 0 8px var(--terminal-green-dark);
+        }
+        .error {
+            color: #ff0055;
+            border-color: #ff0055;
+            box-shadow: 0 0 8px #ff0055;
+        }
+        /* Terminal prompt effect for section titles */
+        h5::before {
+            content: "$ ";
+            color: var(--terminal-green);
+            font-weight: bold;
+            opacity: 0.8;
+        }
+        /* Subtle grid background for terminal feel */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            pointer-events: none;
+            background-image: linear-gradient(rgba(0,255,0,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,255,0,0.03) 1px, transparent 1px);
+            background-size: 20px 20px;
+            z-index: 0;
+        }
+        @media (max-width: 600px) {
+            main {
+                padding: 14px 2vw 12px 2vw;
+            }
+            h5 {
+                font-size: 1.2rem;
+            }
+            legend {
+                font-size: 1rem;
+            }
+        }
+    </style>
+    <!-- EmailJS SDK for sending emails from frontend -->
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script>
+        (function(){
+            emailjs.init("urZmDaLPRh_VkhVYP");
+        })();
+    </script>
+</head>
+<body>
+    <main>
+        <section>
+            <h5>Let's Connect</h5>
+            <form id="contact-form" autocomplete="off">
+                <legend>Contact Form</legend>
+
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required placeholder="Your name">
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required placeholder="you@email.com">
+
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="4" required placeholder="Type your message here..."></textarea>
+
+                <div class="btn-row">
+                    <button type="submit">Send</button>
+                    <button type="reset">Reset</button>
+                </div>
+                <div id="form-status"></div>
+            </form>
+        </section>
+    </main>
+    <script>
+        // EmailJS send handler
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const status = document.getElementById('form-status');
+            status.textContent = '';
+            status.className = '';
+
+            // Replace with your EmailJS service ID and template ID
+            const serviceID = 'service_r5l3l1e';
+            const templateID = 'template_241000o';
+
+            emailjs.sendForm(serviceID, templateID, this)
+                .then(() => {
+                    status.textContent = 'Thank you! Your message has been sent.';
+                    status.className = 'success';
+                    this.reset();
+                }, (err) => {
+                    status.textContent = 'Oops! Something went wrong. Please try again later.';
+                    status.className = 'error';
+                });
+        });
+    </script>
+</body>
+</html>
